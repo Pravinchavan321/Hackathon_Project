@@ -24,7 +24,8 @@ storage/
 uploads/
 
 # Results (generated)
-results/
+results/*
+!results/results.json
 
 # IDE
 .vscode/
