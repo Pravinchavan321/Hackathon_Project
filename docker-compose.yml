@@ -1,27 +1,70 @@
 services:
+  mongo:
+    image: mongo:7.0
+    container_name: agentshield-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - agentshield-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand({ping: 1})"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    container_name: agentshield-backend
+    restart: always
     ports:
       - "8000:8000"
     environment:
       - APP_ENV=production
       - MONGODB_URI=mongodb://mongo:27017/agentshield_ai
       - LLM_PROVIDER=mock
-      - FRONTEND_ORIGIN=http://localhost:5173
+      - FRONTEND_ORIGIN=http://localhost:3000
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     volumes:
       - receipt_storage:/app/storage
+    networks:
+      - agentshield-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
-  mongo:
-    image: mongo:7.0
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agentshield-frontend
     restart: always
     ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - agentshield-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+networks:
+  agentshield-network:
+    driver: bridge
 
 volumes:
   mongo_data:

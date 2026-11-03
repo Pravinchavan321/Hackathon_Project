@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/ backend/
 COPY data/ data/
+COPY eval/ eval/
 COPY policies.yaml policies.yaml
 
 EXPOSE 8000

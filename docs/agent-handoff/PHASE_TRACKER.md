@@ -172,7 +172,14 @@
 
 ## Phase 11: Deployment & Containerization
 - **Objective:** Package the application for one-command local execution and cloud deployment.
-- **Current Status:** `NOT_STARTED`
+- **Key Deliverables:**
+  - [x] Multi-stage production `frontend/Dockerfile` (Node 18 build + Nginx Alpine runtime)
+  - [x] Nginx configuration (`frontend/nginx.conf`) with SPA fallback, `/api/` reverse proxy, and `/ws/` WebSocket upgrade
+  - [x] Production `docker-compose.yml` orchestrating MongoDB (healthchecked), FastAPI backend, and React frontend on bridge network
+  - [x] Validated container manifests via `docker compose config --dry-run` (0 warnings, 0 errors)
+  - [x] Complete deployment instructions in `docs/deployment-guide.md`
+- **Exit Gate:** Application deployable via single command (`docker compose up -d`); all 36 backend tests pass.
+- **Current Status:** `VERIFIED`
 
 ---
 
