@@ -1,0 +1,53 @@
+# Sample organisation policy. Enforced in CODE (governance/policy_engine.py), never in the prompt.
+# Decision values: ALLOW | DENY | REQUIRE_APPROVAL
+# Precedence: DENY > REQUIRE_APPROVAL > ALLOW. Unknown tool or error => DENY (fail closed).
+version: 1
+
+tool_allowlist:
+  - submit_claim
+  - get_policy
+  - notify_manager
+
+rules:
+  - id: R1_AMOUNT_LIMIT
+    type: amount_threshold
+    description: "Claims above ₹5,000 require manager approval"
+    parameters:
+      threshold: 5000
+    decision: REQUIRE_APPROVAL
+    priority: 10
+
+  - id: R2_BANNED_CATEGORY
+    type: category_blocked
+    description: "Personal, alcohol, gambling, gift card expenses are prohibited"
+    parameters:
+      categories: [personal, alcohol, gambling, gift_cards]
+    decision: DENY
+    priority: 20
+
+  - id: R3_DUPLICATE_RECEIPT
+    type: duplicate_check
+    description: "Duplicate receipt submissions are rejected"
+    parameters: {}
+    decision: DENY
+    priority: 20
+
+  - id: R4_DAILY_CAP
+    type: daily_limit
+    description: "Daily spending above ₹10,000 requires approval"
+    parameters:
+      limit: 10000
+    decision: REQUIRE_APPROVAL
+    priority: 10
+
+  - id: R5_RECEIPT_REQUIRED
+    type: receipt_required
+    description: "A receipt must be attached to every expense claim"
+    parameters: {}
+    decision: DENY
+    priority: 20
+
+approval:
+  who_can_approve: [MANAGER, ADMIN]
+  single_use: true
+  expiry_minutes: 60

@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/agentshield_ai
+      - LLM_PROVIDER=mock
+      - FRONTEND_ORIGIN=http://localhost:5173
+    depends_on:
+      - mongo
+    volumes:
+      - receipt_storage:/app/storage
+
+  mongo:
+    image: mongo:7.0
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  receipt_storage:
