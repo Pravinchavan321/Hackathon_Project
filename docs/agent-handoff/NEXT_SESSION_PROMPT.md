@@ -10,16 +10,18 @@ Mandatory reading order:
 4. Verify current test and build health by running:
    - `python -m pytest backend/tests/ -v`
 
-Current Bounded Goal: Phase 6 — Multi-Agent System (LangGraph)
-Execute Phase 6 deliverables:
-1. Implement `backend/app/orchestration/state.py` (TypedDict `WorkflowState` managing task identity, input data, plan, receipt extraction, validation findings, proposed action, governance decision, approval ticket, execution result, and agent trace).
-2. Implement `backend/app/services/llm_provider.py` (Abstract `LLMProvider`, `GeminiLLMProvider` using langchain-google-genai, and deterministic `MockLLMProvider` for tests).
-3. Implement `backend/app/agents/planner_agent.py` (Planner Agent decomposing user instructions into pipeline subtasks).
-4. Implement `backend/app/agents/receipt_agent.py` (Receipt Agent parsing receipts with untrusted content isolation).
-5. Implement `backend/app/agents/validation_agent.py` (Validation Agent assessing completeness and duplicate flags).
-6. Implement `backend/app/agents/execution_agent.py` (Execution Agent preparing proposed action dictionary; cannot call tools directly).
-7. Implement `backend/app/orchestration/nodes.py` and `backend/app/orchestration/graph.py` (LangGraph StateGraph with conditional edges: ALLOW -> execute, DENY -> block, REQUIRE_APPROVAL -> interrupt).
-8. Author `backend/tests/test_agents.py` testing the complete LangGraph flow across compliant, violating, and threshold-escalating tasks.
-9. Run `python -m pytest backend/tests/ -v` ensuring all tests pass.
-10. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 6 VERIFIED.
+Current Bounded Goal: Phase 7 — Human Approval & State Pause/Resume API
+Execute Phase 7 deliverables:
+1. Implement Approval REST endpoints in `backend/app/api/approval_routes.py`:
+   - `GET /api/v1/approvals/pending` (retrieves pending approval requests for manager/admin).
+   - `GET /api/v1/approvals/{approval_id}` (retrieves specific approval with exact proposed action & reasons).
+   - `POST /api/v1/approvals/{approval_id}/decide` (records manager approve/reject verdict with comment).
+2. Implement Task execution & resume REST endpoints in `backend/app/api/task_routes.py`:
+   - `POST /api/v1/tasks/run` (initiates LangGraph agent workflow; handles direct completion or approval pause).
+   - `POST /api/v1/tasks/{task_id}/resume` (resumes paused task after manager approval using `resume_workflow`).
+   - `GET /api/v1/tasks/{task_id}` (fetches task status and agent trace).
+3. Register routes in `backend/app/main.py`.
+4. Author `backend/tests/test_api_approvals.py` testing the complete HTTP flow: initiate task -> receive interrupt status -> query pending approvals -> submit approval -> resume task -> verify SUCCEEDED status.
+5. Run `python -m pytest backend/tests/ -v` ensuring all tests pass.
+6. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 7 VERIFIED.
 ```

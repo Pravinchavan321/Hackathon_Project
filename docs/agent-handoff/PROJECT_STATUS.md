@@ -1,8 +1,8 @@
 # Project Status — AgentShield AI
 
-**Last Updated:** 2026-11-04 01:12 IST  
-**Current Phase:** Phase 5 (`VERIFIED`) → Transitioning to Phase 6 (Multi-Agent System with LangGraph)  
-**Overall Progress:** 55%
+**Last Updated:** 2026-11-04 01:55 IST  
+**Current Phase:** Phase 6 (`VERIFIED`) → Transitioning to Phase 7 (Human Approval & State Pause/Resume API)  
+**Overall Progress:** 65%
 
 ---
 
@@ -33,12 +33,7 @@
   - Duplicate detection matching content hashes & claim fingerprints (`backend/app/tools/duplicate_checker.py`).
   - Simulated claim submission tool requiring valid Governance ALLOW ticket (`backend/app/tools/claim_executor.py`).
   - Idempotency key protection preventing duplicate transactions.
-  - Automated test suite passing **26/26 tests** (`backend/tests/` PASSED in 14.01s).
-
----
-
-## 2. In Progress (Phase 6 Target)
-- Multi-Agent System (LangGraph):
+- **Phase 6: Multi-Agent System (LangGraph) (`VERIFIED`):**
   - Shared `WorkflowState` typed state model (`backend/app/orchestration/state.py`).
   - Planner Agent (`backend/app/agents/planner_agent.py`).
   - Receipt Agent (`backend/app/agents/receipt_agent.py`).
@@ -46,18 +41,27 @@
   - Execution Agent (`backend/app/agents/execution_agent.py`).
   - LLM Provider service with Gemini API and deterministic mock provider (`backend/app/services/llm_provider.py`).
   - LangGraph StateGraph coordinating agents, routing to Governance Gateway, and wiring approval pause/resume (`backend/app/orchestration/graph.py`).
+  - Checkpointed execution flow with `interrupt()` and `Command(resume=...)`.
+  - Automated test suite passing **30/30 tests** (`backend/tests/` PASSED in 7.69s).
+
+---
+
+## 2. In Progress (Phase 7 Target)
+- Human Approval & State Pause/Resume Endpoints:
+  - Approval REST routes (`/api/v1/approvals/pending`, `/api/v1/approvals/{id}`, `/api/v1/approvals/{id}/decide`).
+  - Task execution & resume REST endpoints (`/api/v1/tasks/run`, `/api/v1/tasks/{id}/resume`).
+  - Task history & status tracking.
 
 ---
 
 ## 3. Active Blockers & Risks
-- **None.** All 26 backend unit, security, and tool tests pass.
+- **None.** All 30 backend unit, security, tool, and multi-agent tests pass.
 
 ---
 
 ## 4. Next Bounded Action
-- Execute **Phase 6: Multi-Agent System (LangGraph)**:
-  1. Implement `backend/app/orchestration/` and `backend/app/agents/` modules.
-  2. Implement `backend/app/services/llm_provider.py` (Gemini API + deterministic mock LLM).
-  3. Create `backend/tests/test_agents.py` testing the complete LangGraph coordination pipeline and governance edge routing.
-  4. Run full pytest suite.
-  5. Update continuity tracking files.
+- Execute **Phase 7: Human Approval & State Pause/Resume API**:
+  1. Build approval & task API endpoints in `backend/app/api/`.
+  2. Wire `ApprovalManager` and `resume_workflow` into the FastAPI routers.
+  3. Author `backend/tests/test_api_approvals.py` verifying pending queue, approval decision, tamper detection, and resume execution.
+  4. Run pytest suite and update tracking files.

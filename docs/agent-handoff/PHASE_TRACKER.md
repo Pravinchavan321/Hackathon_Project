@@ -97,7 +97,18 @@
 
 ## Phase 6: Multi-Agent System (LangGraph)
 - **Objective:** Implement 4 specialized agents coordinated via a shared typed state graph.
-- **Current Status:** `NOT_STARTED`
+- **Key Deliverables:**
+  - [x] Shared `WorkflowState` typed state model (`backend/app/orchestration/state.py`)
+  - [x] Planner Agent decomposing user instructions into subtasks (`backend/app/agents/planner_agent.py`)
+  - [x] Receipt Agent isolating untrusted inputs & normalizing invoice data (`backend/app/agents/receipt_agent.py`)
+  - [x] Validation Agent assessing data consistency & duplicate hashes (`backend/app/agents/validation_agent.py`)
+  - [x] Execution Agent strictly formatting action proposals without direct execution rights (`backend/app/agents/execution_agent.py`)
+  - [x] LLM Provider with Gemini API and deterministic MockLLMProvider (`backend/app/services/llm_provider.py`)
+  - [x] StateGraph workflow with conditional governance gating (`backend/app/orchestration/graph.py`)
+  - [x] LangGraph pause (`interrupt()`) and resume (`Command(resume=...)`) checkpoint mechanics
+  - [x] Automated Multi-Agent test suite (`backend/tests/test_agents.py` - 4/4 passed; 30/30 total backend tests)
+- **Exit Gate:** Multi-agent pipeline coordinates end-to-end, respects deterministic gateway decisions, and pauses/resumes cleanly; all 30 backend tests pass.
+- **Current Status:** `VERIFIED`
 
 ---
 
