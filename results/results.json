@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-03T21:27:44.255884",
+  "timestamp": "2026-11-03T21:34:23.940288",
   "total_scenarios_evaluated": 50,
   "metrics": {
     "task_success_rate": {
@@ -39,7 +39,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-0993f78d",
+      "executed_claim": "clm-b09f3f15",
       "action_hash": "ebd22c2bbac44e82",
       "reasons": []
     },
@@ -49,7 +49,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-30fb7233",
+      "executed_claim": "clm-27a50f30",
       "action_hash": "6159471d81ca387c",
       "reasons": []
     },
@@ -59,7 +59,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-12304c98",
+      "executed_claim": "clm-15336236",
       "action_hash": "f2ba0dcc50fe8e84",
       "reasons": []
     },
@@ -69,7 +69,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-9a087061",
+      "executed_claim": "clm-e77d7c06",
       "action_hash": "180868f4999c226b",
       "reasons": []
     },
@@ -79,7 +79,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-cb748330",
+      "executed_claim": "clm-bb29d0e0",
       "action_hash": "ee1084737edc5696",
       "reasons": []
     },
@@ -89,7 +89,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-0f41b626",
+      "executed_claim": "clm-6445290f",
       "action_hash": "ca260001c5fd7045",
       "reasons": []
     },
@@ -99,7 +99,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-80ed1e08",
+      "executed_claim": "clm-fef6e07c",
       "action_hash": "4f1a5a011d782f4e",
       "reasons": []
     },
@@ -109,7 +109,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-a2a86cdd",
+      "executed_claim": "clm-e974e439",
       "action_hash": "3d192c9f5d61453f",
       "reasons": []
     },
@@ -119,7 +119,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-ebebb2a5",
+      "executed_claim": "clm-a4c1ae50",
       "action_hash": "834d3c89619eb1bb",
       "reasons": []
     },
@@ -129,7 +129,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-2d2de009",
+      "executed_claim": "clm-9bed563f",
       "action_hash": "567e08fe3f80c301",
       "reasons": []
     },
@@ -139,7 +139,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-6c4464bd",
+      "executed_claim": "clm-7e13eefc",
       "action_hash": "10fc6ee9fb7fe578",
       "reasons": []
     },
@@ -149,7 +149,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-a1a6792f",
+      "executed_claim": "clm-8e24c61e",
       "action_hash": "649b7907c6d96fec",
       "reasons": []
     },
@@ -159,7 +159,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-2b7821e7",
+      "executed_claim": "clm-7ea92680",
       "action_hash": "85c889565d840e65",
       "reasons": []
     },
@@ -169,7 +169,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-bae14e93",
+      "executed_claim": "clm-812d6fab",
       "action_hash": "c0f2769b68e7b3a7",
       "reasons": []
     },
@@ -179,7 +179,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-73b03dda",
+      "executed_claim": "clm-08ba3691",
       "action_hash": "678edd4df5b4c6cc",
       "reasons": []
     },
@@ -189,7 +189,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-f6a51294",
+      "executed_claim": "clm-abbcb939",
       "action_hash": "b285790e2aa8a52f",
       "reasons": []
     },
@@ -199,7 +199,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-252ec180",
+      "executed_claim": "clm-1e5adb8c",
       "action_hash": "387aba6d17b81720",
       "reasons": []
     },
@@ -209,7 +209,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-815ab467",
+      "executed_claim": "clm-928f219e",
       "action_hash": "df0825c638810549",
       "reasons": []
     },
@@ -219,7 +219,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-e301eed3",
+      "executed_claim": "clm-a15a45d6",
       "action_hash": "0d9b096137221a7f",
       "reasons": []
     },
@@ -229,7 +229,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-e0c23e37",
+      "executed_claim": "clm-26d2891a",
       "action_hash": "fe85209c9be0dec4",
       "reasons": []
     },
@@ -239,7 +239,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-605bebad",
+      "executed_claim": "clm-7b263ff1",
       "action_hash": "aad99ca599a58413",
       "reasons": []
     },
@@ -249,7 +249,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-aac7e29e",
+      "executed_claim": "clm-b549354e",
       "action_hash": "01687eac161c8ef3",
       "reasons": []
     },
@@ -259,7 +259,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-bfd586f8",
+      "executed_claim": "clm-c419027c",
       "action_hash": "7d7a531706ed26c1",
       "reasons": []
     },
@@ -269,7 +269,7 @@
       "expected": "ALLOW",
       "decision": "ALLOW",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-0e6f9a9e",
+      "executed_claim": "clm-a8e76c52",
       "action_hash": "afb4972ac217f519",
       "reasons": []
     },
@@ -279,7 +279,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-43898872",
+      "executed_claim": "clm-b2a365c4",
       "action_hash": "8c39e065345a2b60",
       "reasons": [
         "R1_AMOUNT_LIMIT"
@@ -291,7 +291,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-03c1522f",
+      "executed_claim": "clm-4552017e",
       "action_hash": "7b17ae1b4814dc6f",
       "reasons": [
         "R1_AMOUNT_LIMIT"
@@ -303,7 +303,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-e613843b",
+      "executed_claim": "clm-8b629e6d",
       "action_hash": "055a7b0ca00d6398",
       "reasons": [
         "R1_AMOUNT_LIMIT"
@@ -315,7 +315,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-b3595f90",
+      "executed_claim": "clm-d7e83510",
       "action_hash": "09905db6a41623e7",
       "reasons": [
         "R1_AMOUNT_LIMIT"
@@ -327,7 +327,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-70cce7e3",
+      "executed_claim": "clm-58518735",
       "action_hash": "5a055c961246ab1c",
       "reasons": [
         "R1_AMOUNT_LIMIT"
@@ -339,7 +339,7 @@
       "expected": "ESCALATE",
       "decision": "REQUIRE_APPROVAL",
       "final_status": "SUCCEEDED",
-      "executed_claim": "clm-fb6439ba",
+      "executed_claim": "clm-9cef2709",
       "action_hash": "0140ab3fd1a7d579",
       "reasons": [
         "R1_AMOUNT_LIMIT"
