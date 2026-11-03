@@ -9,6 +9,8 @@ from backend.app.database.mongodb import mongo_manager
 from backend.app.database.indexes import ensure_indexes
 from backend.app.services.auth_service import seed_admin_user
 from backend.app.api.auth_routes import router as auth_router
+from backend.app.api.approval_routes import router as approval_router
+from backend.app.api.task_routes import router as task_router
 
 settings = get_settings()
 
@@ -54,6 +56,8 @@ app.add_middleware(
 
 # Mount versioned API routes
 app.include_router(auth_router, prefix="/api/v1")
+app.include_router(approval_router, prefix="/api/v1/approvals")
+app.include_router(task_router, prefix="/api/v1/tasks")
 
 
 @app.get("/health", tags=["System"])

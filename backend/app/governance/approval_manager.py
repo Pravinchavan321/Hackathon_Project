@@ -63,6 +63,16 @@ class ApprovalManager:
             return self.db[collections.APPROVALS].find_one({"approval_id": approval_id})
         return _MEMORY_APPROVALS.get(approval_id)
 
+    def list_pending(self) -> list:
+        """List active pending approvals that have not expired."""
+        now = datetime.utcnow()
+        if self.db is not None:
+            return list(self.db[collections.APPROVALS].find({"status": "PENDING", "expires_at": {"$gt": now}}))
+        return [
+            v for v in _MEMORY_APPROVALS.values()
+            if v.get("status") == "PENDING" and v.get("expires_at", now) > now
+        ]
+
     def record_decision(
         self, approval_id: str, approver_id: str, approver_role: str, verdict: str, reason: str = ""
     ) -> Tuple[bool, str]:

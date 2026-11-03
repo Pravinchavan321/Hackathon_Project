@@ -92,3 +92,33 @@
   - High-value expense (> ₹5,000) halts at approval node via `interrupt()`, resumes upon human sign-off via `Command(resume=...)`, and executes successfully.
   - Manager rejection halts workflow in DENIED state with rejection error.
   - Backend test count reached **30 passed tests** (0 failed).
+
+---
+
+## Session 7 Log (Phase 7: Human Approval & State Pause/Resume API)
+- **Timestamp:** 2026-11-04 02:24 IST
+- **Phase Addressed:** Phase 7 (`VERIFIED`)
+- **Files Modified / Created:**
+  - `backend/app/models/approval.py` (Added verdict field to ApprovalDecisionRequest)
+  - `backend/app/governance/approval_manager.py` (Added list_pending() query method)
+  - `backend/app/api/approval_routes.py` (Endpoints for pending query, details, and decision with self-approval block)
+  - `backend/app/api/task_routes.py` (Endpoints for task run, resume, and status inspection)
+  - `backend/app/database/collections.py` (Added TASKS alias for AGENT_TASKS)
+  - `backend/app/main.py` (Mounted /api/v1/approvals and /api/v1/tasks)
+  - `backend/tests/test_api_approvals.py` (3 comprehensive REST integration tests)
+  - `docs/agent-handoff/PHASE_TRACKER.md` (Updated status to VERIFIED)
+  - `docs/agent-handoff/PROJECT_STATUS.md` (Updated progress to 75%)
+  - `docs/agent-handoff/SESSION_LOG.md` (Appended Session 7 log)
+  - `docs/agent-handoff/NEXT_SESSION_PROMPT.md` (Prepared Phase 8 prompt)
+- **Commands Executed:**
+  - `python -m pytest backend/tests/test_api_approvals.py -v` (PASSED 3/3)
+  - `python -m pytest backend/tests/ -v` (PASSED 33/33 in 8.43s)
+- **Verification Evidence:**
+  - Low-value expense (<= ₹5,000) completes via REST without pausing (`status == "SUCCEEDED"`, claim ID generated).
+  - High-value expense (> ₹5,000) halts with `WAITING_FOR_APPROVAL` status and returns approval ID & action hash.
+  - Employee cannot access manager pending queue (HTTP 403 Forbidden).
+  - Self-approval by requester strictly blocked (HTTP 403 Forbidden).
+  - Manager approves ticket via `POST /api/v1/approvals/{id}/decide`.
+  - Task resumes via `POST /api/v1/tasks/{id}/resume` and executes claim to `SUCCEEDED`.
+  - Manager rejection halts workflow in `DENIED` status.
+  - Backend test count reached **33 passed tests** (0 failed).

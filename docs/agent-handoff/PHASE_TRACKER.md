@@ -113,8 +113,17 @@
 ---
 
 ## Phase 7: Human Approval & State Pause/Resume
-- **Objective:** Implement exact-action binding, approval lifecycle, and durable pause/resume.
-- **Current Status:** `NOT_STARTED`
+- **Objective:** Implement exact-action binding, approval lifecycle, and durable pause/resume REST APIs.
+- **Key Deliverables:**
+  - [x] Pending approvals query endpoint (`GET /api/v1/approvals/pending`)
+  - [x] Individual approval detail endpoint (`GET /api/v1/approvals/{id}`)
+  - [x] Manager approval decision endpoint (`POST /api/v1/approvals/{id}/decide`) with strict self-approval prevention
+  - [x] Multi-agent task execution endpoint (`POST /api/v1/tasks/run`) handling direct finish and `WAITING_FOR_APPROVAL` pause
+  - [x] Checkpointed task resumption endpoint (`POST /api/v1/tasks/{id}/resume`) with exact action revalidation
+  - [x] Task status inspection endpoint (`GET /api/v1/tasks/{id}`)
+  - [x] Automated Approval & Resumption test suite (`backend/tests/test_api_approvals.py` - 3/3 passed; 33/33 total backend tests)
+- **Exit Gate:** Complete HTTP journey from agent execution pause to manager review and durable resumption verified; all 33 backend tests pass.
+- **Current Status:** `VERIFIED`
 
 ---
 

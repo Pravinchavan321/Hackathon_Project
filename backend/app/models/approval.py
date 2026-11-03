@@ -15,7 +15,8 @@ class ApprovalStatus(str, Enum):
 
 
 class ApprovalDecisionRequest(BaseModel):
-    reason: Optional[str] = "Manager review sign-off"
+    verdict: str = Field(default="approved", description="Decision verdict: 'approved' or 'rejected'")
+    reason: Optional[str] = Field(default="Manager review sign-off", description="Optional justification note")
 
 
 class ApprovalResponse(BaseModel):
