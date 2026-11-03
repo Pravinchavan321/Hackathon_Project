@@ -143,7 +143,15 @@
 
 ## Phase 9: System Integration & Live WebSockets
 - **Objective:** Wire REST API and WebSockets between frontend and backend for end-to-end task streaming.
-- **Current Status:** `NOT_STARTED`
+- **Key Deliverables:**
+  - [x] Task connection manager supporting multiple subscribers (`backend/app/api/ws_routes.py`)
+  - [x] WebSocket streaming endpoint `/ws/tasks/{task_id}` for live event broadcasting
+  - [x] Connection handshake, client ping/pong keepalive, and graceful disconnect cleanup
+  - [x] Frontend WebSocket streaming hook (`frontend/src/hooks/useTaskStream.js`)
+  - [x] Automated WebSocket test suite (`backend/tests/test_websocket.py` - 3/3 passed; 36/36 total backend tests)
+  - [x] Full frontend production build verified (`npm --prefix frontend run build` - 1654 modules, 0 errors)
+- **Exit Gate:** Real-time event streaming operational over WebSockets; all 36 backend tests pass.
+- **Current Status:** `VERIFIED`
 
 ---
 

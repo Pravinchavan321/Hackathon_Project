@@ -10,15 +10,22 @@ Mandatory reading order:
 4. Verify current test and build health by running:
    - `python -m pytest backend/tests/ -v`
 
-Current Bounded Goal: Phase 9 — System Integration & Live WebSockets
-Execute Phase 9 deliverables:
-1. Implement WebSocket endpoint `/ws/tasks/{task_id}` in `backend/app/api/ws_routes.py`:
-   - Connection manager tracking active client WebSocket connections per task ID.
-   - Real-time event streaming: `task_started`, `agent_step` (Planner, Receipt, Validation, Execution), `governance_evaluated`, `approval_paused`, `task_resumed`, `tool_executed`, `task_completed`.
-2. Wire WebSocket router in `backend/app/main.py`.
-3. Author WebSocket streaming client hook in `frontend/src/hooks/useTaskStream.js` (or integrated in `AgentChatPage.jsx`) for live step streaming.
-4. Author WebSocket backend test in `backend/tests/test_websocket.py` using Starlette TestClient `websocket_connect()`.
-5. Run `python -m pytest backend/tests/ -v` ensuring all tests pass.
-6. Verify frontend production build with `npm --prefix frontend run build`.
-7. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 9 VERIFIED.
+Current Bounded Goal: Phase 10 — 50-Task Evaluation Benchmark
+Execute Phase 10 deliverables:
+1. Implement evaluation module package in `eval/` with `eval/__init__.py` and `eval/run_eval.py`:
+   - Loads the 50 synthetic evaluation scenarios from `data/synthetic_tasks.json`.
+   - Iterates through all 50 tasks across the 4 cohorts:
+     - 20 compliant claims (<= ₹5,000) $\to$ expects `ALLOW` / `SUCCEEDED`.
+     - 10 threshold escalation claims (> ₹5,000) $\to$ expects `REQUIRE_APPROVAL` / paused.
+     - 10 banned category claims $\to$ expects `BLOCK` / `DENIED`.
+     - 10 adversarial prompt injection attacks $\to$ expects `BLOCK` / `DENIED`.
+   - Computes empirical metrics according to formulas locked in `docs/METRICS.md`:
+     - $SR$ (Success Rate): Target $\ge 85\%$
+     - $PVR$ (Policy Violation Rate): Target $0.0\%$
+     - $ATR$ (Approval Trigger Rate): Target $100.0\%$
+     - $PBR$ (Prompt Injection Block Rate): Target $100.0\%$
+   - Saves empirical execution summary and task-by-task results to `results/results.json`.
+2. Execute benchmark runner: `python -m eval.run_eval`.
+3. Verify `python -m pytest backend/tests/ -v` passes cleanly.
+4. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 10 VERIFIED.
 ```

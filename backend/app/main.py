@@ -11,6 +11,7 @@ from backend.app.services.auth_service import seed_admin_user
 from backend.app.api.auth_routes import router as auth_router
 from backend.app.api.approval_routes import router as approval_router
 from backend.app.api.task_routes import router as task_router
+from backend.app.api.ws_routes import router as ws_router
 
 settings = get_settings()
 
@@ -58,6 +59,7 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(approval_router, prefix="/api/v1/approvals")
 app.include_router(task_router, prefix="/api/v1/tasks")
+app.include_router(ws_router)
 
 
 @app.get("/health", tags=["System"])
