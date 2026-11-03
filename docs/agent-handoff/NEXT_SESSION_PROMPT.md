@@ -10,17 +10,15 @@ Mandatory reading order:
 4. Verify current test and build health by running:
    - `python -m pytest backend/tests/ -v`
 
-Current Bounded Goal: Phase 8 — Frontend Enterprise Dashboard
-Execute Phase 8 deliverables:
-1. Implement Frontend API service in `frontend/src/services/api.js` with Axios client connecting to `/api/v1/auth`, `/api/v1/tasks`, `/api/v1/approvals`.
-2. Implement Agent Chat & Task submission view in `frontend/src/pages/AgentChatPage.jsx`:
-   - Interactive prompt input, receipt upload, live agent status pills, execution trace timeline, and policy decision badges.
-3. Implement Approvals review view in `frontend/src/pages/ApprovalsPage.jsx`:
-   - Pending tickets table, side-by-side action comparison, SHA-256 hash inspection, approve / reject modal with manager notes.
-4. Implement Policies & Governance viewer in `frontend/src/pages/PoliciesPage.jsx`:
-   - Active rules display, category limits, risk weights, fail-closed enforcement indicators.
-5. Implement Evaluation Metrics view in `frontend/src/pages/EvaluationPage.jsx`:
-   - Live 50-task benchmark metrics (Success Rate $\ge 85\%$, Violations = 0%, Approval Trigger = 100%, Injection Blocked = 100%).
-6. Verify build cleanly via `npm run build` in `frontend/`.
-7. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 8 VERIFIED.
+Current Bounded Goal: Phase 9 — System Integration & Live WebSockets
+Execute Phase 9 deliverables:
+1. Implement WebSocket endpoint `/ws/tasks/{task_id}` in `backend/app/api/ws_routes.py`:
+   - Connection manager tracking active client WebSocket connections per task ID.
+   - Real-time event streaming: `task_started`, `agent_step` (Planner, Receipt, Validation, Execution), `governance_evaluated`, `approval_paused`, `task_resumed`, `tool_executed`, `task_completed`.
+2. Wire WebSocket router in `backend/app/main.py`.
+3. Author WebSocket streaming client hook in `frontend/src/hooks/useTaskStream.js` (or integrated in `AgentChatPage.jsx`) for live step streaming.
+4. Author WebSocket backend test in `backend/tests/test_websocket.py` using Starlette TestClient `websocket_connect()`.
+5. Run `python -m pytest backend/tests/ -v` ensuring all tests pass.
+6. Verify frontend production build with `npm --prefix frontend run build`.
+7. Update `docs/agent-handoff/PHASE_TRACKER.md`, `PROJECT_STATUS.md`, `SESSION_LOG.md`, and `NEXT_SESSION_PROMPT.md` marking Phase 9 VERIFIED.
 ```
