@@ -1,0 +1,33 @@
+# Sample organisation policy. Enforced in CODE (app/policy_engine.py), never in the prompt.
+# Decision values: ALLOW | ESCALATE (needs manager) | BLOCK
+# Precedence: BLOCK > ESCALATE > ALLOW. Unknown tool or error => BLOCK (fail closed).
+version: 1
+
+tool_allowlist:
+  - submit_claim
+  - get_policy
+  - notify_manager
+
+rules:
+  - id: R1_AMOUNT_LIMIT
+    type: amount_over
+    limit: 5000          # strictly greater than 5000 => escalate (5000 itself is allowed)
+    decision: ESCALATE
+  - id: R2_BANNED_CATEGORY
+    type: banned_category
+    categories: [personal, alcohol, gambling, gift_cards]
+    decision: BLOCK
+  - id: R3_DUPLICATE_RECEIPT
+    type: duplicate_receipt
+    decision: BLOCK
+  - id: R4_DAILY_CAP
+    type: daily_cap
+    limit: 10000         # employee total for the day (prior spend + this claim)
+    decision: ESCALATE
+  - id: R5_RECEIPT_REQUIRED
+    type: receipt_required
+    decision: BLOCK
+
+approval:
+  who_can_approve: [MANAGER, ADMIN]   # an agent can never approve
+  single_use: true
